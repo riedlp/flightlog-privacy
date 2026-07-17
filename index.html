@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlightLog Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e6e6e6; background: #121212; }
+    a { color: #6db3ff; }
+  }
+  h1 { color: #1F80FF; margin-bottom: 0.2rem; }
+  .tagline { color: #666; margin-top: 0; margin-bottom: 2rem; }
+  @media (prefers-color-scheme: dark) { .tagline { color: #aaa; } }
+  h2 { margin-top: 2.2rem; border-bottom: 1px solid rgba(127,127,127,0.3); padding-bottom: 0.3rem; }
+  .effective-date { font-size: 0.9rem; color: #666; }
+  @media (prefers-color-scheme: dark) { .effective-date { color: #aaa; } }
+  ul { padding-left: 1.3rem; }
+  li { margin-bottom: 0.4rem; }
+  a { color: #1F80FF; }
+  footer { margin-top: 3rem; font-size: 0.85rem; color: #777; }
+</style>
+</head>
+<body>
+
+<h1>FlightLog Privacy Policy</h1>
+<p class="tagline">High-performance, offline-first RC flight management and telemetry analysis.</p>
+<p class="effective-date">Effective date: July 18, 2026</p>
+
+<p>FlightLog ("the app," "we," "us") is developed and operated by an independent developer,
+contactable at <a href="mailto:riedlking@gmail.com">riedlking@gmail.com</a>. This policy explains
+what data FlightLog collects, why, and how you can control or remove it.</p>
+
+<h2>Information We Collect</h2>
+<p>FlightLog is offline-first: your flight logs and fleet data live on your device first and sync
+to your own private cloud account for backup and multi-device access. We collect:</p>
+<ul>
+  <li><strong>Account information</strong> — your email address and pilot name, collected at
+    sign-up to create and identify your account, and to gate access via manual approval.</li>
+  <li><strong>Pilot profile details (optional)</strong> — your RC flying field and AMA/FAA
+    registration number, if you choose to add them to your profile.</li>
+  <li><strong>Flight and fleet data</strong> — telemetry logs (RPM, voltage, current, and related
+    flight metrics), and the aircraft and battery profiles you create.</li>
+  <li><strong>Voice audio (optional, off by default)</strong> — if you enable hands-free logging,
+    your speech is sent to Google Gemini AI to extract flight details for you to review before
+    saving. Audio is processed in real time and is never stored or logged by FlightLog. You are
+    asked to consent the first time you use the microphone, and can withdraw consent anytime in
+    Configuration.</li>
+  <li><strong>Crash diagnostics (optional, off by default)</strong> — if you enable Crash
+    Reporting in Configuration, Firebase Crashlytics sends anonymous crash reports (stack traces,
+    device model, OS version) to help us fix bugs. This never includes your name, email, or
+    flight data.</li>
+</ul>
+
+<h2>How We Use Your Information</h2>
+<ul>
+  <li>To provide the app's core functionality: logging, syncing, and analyzing your flights.</li>
+  <li>To operate the manual-approval access model — an administrator reviews new accounts before
+    granting access.</li>
+  <li>To diagnose and fix crashes, if you've opted in to crash reporting.</li>
+  <li>To extract structured flight details from your voice, if you've opted in to voice entry.</li>
+</ul>
+<p>We do not use your data for advertising, and we do not sell your data to third parties.</p>
+
+<h2>Administrative Transparency</h2>
+<p>For account approval, your email and pilot name are visible to the app administrator during
+account creation and account deletion. FlightLog is a small, manually-approved app (typically used
+by RC flying clubs), so this administrative step is part of how access is granted.</p>
+
+<h2>Third-Party Services</h2>
+<p>FlightLog is built on Firebase (Google) for authentication, cloud storage/sync (Firestore), and
+optional crash reporting (Crashlytics). If you use voice entry, your speech is additionally sent to
+Google Gemini AI (via Firebase AI Logic) solely to extract flight details from what you said. These
+providers process data under their own privacy terms as Google's infrastructure; FlightLog does not
+share your data with any other third party.</p>
+
+<h2>Data Retention &amp; Deletion</h2>
+<ul>
+  <li><strong>Trash &amp; automatic purge</strong> — deleted flights, aircraft, and batteries move
+    to a Trash area and are automatically and permanently purged after 30 days.</li>
+  <li><strong>Data portability</strong> — you can export a complete JSON backup of your account, or
+    a CSV of your flight logs, at any time from Configuration.</li>
+  <li><strong>Account deletion</strong> — you can permanently delete your account and all
+    associated cloud data from the Profile screen. This requires typing a confirmation phrase and
+    cannot be undone.</li>
+</ul>
+
+<h2>Data Security</h2>
+<p>Your data is stored in Google Firestore, secured by server-side access rules that restrict every
+account to its own data, gated by a manual-approval flag that only an administrator can set. Local
+on-device data is not encrypted at rest beyond the operating system's own protections; the app does
+not support Android's automatic backup feature (<code>allowBackup="false"</code>), so no local app
+data is included in device-to-device or cloud OS backups.</p>
+
+<h2>Children's Privacy</h2>
+<p>FlightLog is not directed at children under 13, and we do not knowingly collect personal
+information from children under 13.</p>
+
+<h2>Changes to This Policy</h2>
+<p>If this policy changes, we will update the effective date above and, for material changes,
+notify users in-app.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy or your data can be sent to
+<a href="mailto:riedlking@gmail.com">riedlking@gmail.com</a>.</p>
+
+<footer>FlightLog — this page is the canonical, hosted privacy policy referenced from the app's
+About screen and Google Play Store listing.</footer>
+
+</body>
+</html>
