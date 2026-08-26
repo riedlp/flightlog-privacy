@@ -35,7 +35,7 @@
 
 <h1>FlightLog Privacy Policy</h1>
 <p class="tagline">High-performance, offline-first RC flight management and telemetry analysis.</p>
-<p class="effective-date">Effective date: July 18, 2026</p>
+<p class="effective-date">Effective date: August 26, 2026</p>
 
 <p>FlightLog ("the app," "we," "us") is developed and operated by an independent developer,
 contactable at <a href="mailto:riedlking@gmail.com">riedlking@gmail.com</a>. This policy explains
@@ -46,7 +46,7 @@ what data FlightLog collects, why, and how you can control or remove it.</p>
 to your own private cloud account for backup and multi-device access. We collect:</p>
 <ul>
   <li><strong>Account information</strong> — your email address and pilot name, collected at
-    sign-up to create and identify your account, and to gate access via manual approval.</li>
+    sign-up to create and identify your account.</li>
   <li><strong>Pilot profile details (optional)</strong> — your RC flying field and AMA/FAA
     registration number, if you choose to add them to your profile.</li>
   <li><strong>Flight and fleet data</strong> — telemetry logs (RPM, voltage, current, and related
@@ -65,17 +65,17 @@ to your own private cloud account for backup and multi-device access. We collect
 <h2>How We Use Your Information</h2>
 <ul>
   <li>To provide the app's core functionality: logging, syncing, and analyzing your flights.</li>
-  <li>To operate the manual-approval access model — an administrator reviews new accounts before
-    granting access.</li>
+  <li>To operate account security controls — an administrator can suspend an account found to
+    violate the terms of use, and reinstate it later.</li>
   <li>To diagnose and fix crashes, if you've opted in to crash reporting.</li>
   <li>To extract structured flight details from your voice, if you've opted in to voice entry.</li>
 </ul>
 <p>We do not use your data for advertising, and we do not sell your data to third parties.</p>
 
 <h2>Administrative Transparency</h2>
-<p>For account approval, your email and pilot name are visible to the app administrator during
-account creation and account deletion. FlightLog is a small, manually-approved app (typically used
-by RC flying clubs), so this administrative step is part of how access is granted.</p>
+<p>New accounts are approved automatically at sign-up. Your email and pilot name remain visible to
+the app administrator, who can suspend an account that violates the terms of use, and during
+account deletion.</p>
 
 <h2>Third-Party Services</h2>
 <p>FlightLog is built on Firebase (Google) for authentication, cloud storage/sync (Firestore), and
@@ -93,11 +93,16 @@ share your data with any other third party.</p>
   <li><strong>Account deletion</strong> — you can permanently delete your account and all
     associated cloud data from the Profile screen. This requires typing a confirmation phrase and
     cannot be undone.</li>
+  <li id="account-deletion"><strong>Can't open the app?</strong> — email
+    <a href="mailto:riedlking@gmail.com?subject=FlightLog%20Account%20Deletion%20Request">riedlking@gmail.com</a>
+    with the subject "Account Deletion Request" from the address on your account, and we will
+    permanently delete your account and all associated data within a reasonable time.</li>
 </ul>
 
 <h2>Data Security</h2>
 <p>Your data is stored in Google Firestore, secured by server-side access rules that restrict every
-account to its own data, gated by a manual-approval flag that only an administrator can set. Local
+account to its own data, gated by an approval flag set automatically at sign-up and adjustable only
+by an administrator (for example, to suspend an account). Local
 on-device data is not encrypted at rest beyond the operating system's own protections; the app does
 not support Android's automatic backup feature (<code>allowBackup="false"</code>), so no local app
 data is included in device-to-device or cloud OS backups.</p>
