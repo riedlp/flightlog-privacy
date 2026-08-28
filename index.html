@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FlightLog Privacy Policy</title>
+<meta name="description" content="FlightLog: an offline-first RC flight logbook that merges transmitter telemetry with manual flight logs automatically. No ads, no spam.">
+<title>FlightLog</title>
 <style>
   :root { color-scheme: light dark; }
   body {
@@ -20,107 +21,114 @@
     a { color: #6db3ff; }
   }
   h1 { color: #1F80FF; margin-bottom: 0.2rem; }
-  .tagline { color: #666; margin-top: 0; margin-bottom: 2rem; }
-  @media (prefers-color-scheme: dark) { .tagline { color: #aaa; } }
   h2 { margin-top: 2.2rem; border-bottom: 1px solid rgba(127,127,127,0.3); padding-bottom: 0.3rem; }
-  .effective-date { font-size: 0.9rem; color: #666; }
-  @media (prefers-color-scheme: dark) { .effective-date { color: #aaa; } }
+  h3 { margin-bottom: 0.4rem; }
+  .tagline { color: #666; margin-top: 0; margin-bottom: 2rem; font-size: 1.1rem; }
+  @media (prefers-color-scheme: dark) { .tagline { color: #aaa; } }
   ul { padding-left: 1.3rem; }
   li { margin-bottom: 0.4rem; }
   a { color: #1F80FF; }
   footer { margin-top: 3rem; font-size: 0.85rem; color: #777; }
+  .topnav { margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .topnav a { margin-right: 1.2rem; text-decoration: none; }
+  .topnav a:hover { text-decoration: underline; }
+  .hero { width: 100%; height: auto; border-radius: 12px; margin-bottom: 1.5rem; display: block; }
+  .cta-row { margin: 2rem 0; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .cta { display: inline-block; padding: 0.7rem 1.3rem; border-radius: 8px; background: #1F80FF;
+    color: #fff; text-decoration: none; font-weight: 600; }
+  .cta:hover { background: #1668d6; }
+  .cta.secondary { background: transparent; border: 1px solid #1F80FF; color: #1F80FF; }
+  @media (prefers-color-scheme: dark) { .cta.secondary { color: #6db3ff; border-color: #6db3ff; } }
+  .feature-group { margin-top: 1.4rem; }
 </style>
 </head>
 <body>
 
-<h1>FlightLog Privacy Policy</h1>
-<p class="tagline">High-performance, offline-first RC flight management and telemetry analysis.</p>
-<p class="effective-date">Effective date: August 26, 2026</p>
+<nav class="topnav">
+  <a href="index.html">Home</a>
+  <a href="help.html">Help</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
 
-<p>FlightLog ("the app," "we," "us") is developed and operated by an independent developer,
-contactable at <a href="mailto:riedlking@gmail.com">riedlking@gmail.com</a>. This policy explains
-what data FlightLog collects, why, and how you can control or remove it.</p>
+<img class="hero" src="assets/feature_graphic_DRAFT.png" alt="FlightLog — RC flight logbook, telemetry meets manual, your tags, your stats, your way">
 
-<h2>Information We Collect</h2>
-<p>FlightLog is offline-first: your flight logs and fleet data live on your device first and sync
-to your own private cloud account for backup and multi-device access. We collect:</p>
-<ul>
-  <li><strong>Account information</strong> — your email address and pilot name, collected at
-    sign-up to create and identify your account.</li>
-  <li><strong>Pilot profile details (optional)</strong> — your RC flying field and AMA/FAA
-    registration number, if you choose to add them to your profile.</li>
-  <li><strong>Flight and fleet data</strong> — telemetry logs (RPM, voltage, current, and related
-    flight metrics), and the aircraft and battery profiles you create.</li>
-  <li><strong>Voice audio (optional, off by default)</strong> — if you enable hands-free logging,
-    your speech is sent to Google Gemini AI to extract flight details for you to review before
-    saving. Audio is processed in real time and is never stored or logged by FlightLog. You are
-    asked to consent the first time you use the microphone, and can withdraw consent anytime in
-    Configuration.</li>
-  <li><strong>Crash diagnostics (optional, off by default)</strong> — if you enable Crash
-    Reporting in Configuration, Firebase Crashlytics sends anonymous crash reports (stack traces,
-    device model, OS version) to help us fix bugs. This never includes your name, email, or
-    flight data.</li>
-</ul>
+<h1>FlightLog</h1>
+<p class="tagline">Telemetry meets manual. Your tags. Your stats. Your way.</p>
 
-<h2>How We Use Your Information</h2>
-<ul>
-  <li>To provide the app's core functionality: logging, syncing, and analyzing your flights.</li>
-  <li>To operate account security controls — an administrator can suspend an account found to
-    violate the terms of use, and reinstate it later.</li>
-  <li>To diagnose and fix crashes, if you've opted in to crash reporting.</li>
-  <li>To extract structured flight details from your voice, if you've opted in to voice entry.</li>
-</ul>
-<p>We do not use your data for advertising, and we do not sell your data to third parties.</p>
+<p>RC PILOTS: Manage your fleet, log your flights, and track your batteries anywhere. Effortlessly.</p>
 
-<h2>Administrative Transparency</h2>
-<p>New accounts are approved automatically at sign-up. Your email and pilot name remain visible to
-the app administrator, who can suspend an account that violates the terms of use, and during
-account deletion.</p>
+<p>FlightLog is the ultimate digital logbook for heli, plane, and drone pilots. Whether you prefer quick manual entries at the field or deep OpenTX/EdgeTX telemetry imports, FlightLog works the way you do. Logging is faster than ever thanks to custom tags, voice dictation, and smart predictions for your next battery, location, and flight time. You put in minimal effort at the field, and FlightLog gives you rich, detailed statistics in return.</p>
 
-<h2>Third-Party Services</h2>
-<p>FlightLog is built on Firebase (Google) for authentication, cloud storage/sync (Firestore), and
-optional crash reporting (Crashlytics). If you use voice entry, your speech is additionally sent to
-Google Gemini AI (via Firebase AI Logic) solely to extract flight details from what you said. These
-providers process data under their own privacy terms as Google's infrastructure; FlightLog does not
-share your data with any other third party.</p>
+<div class="cta-row">
+  <a class="cta" href="help.html">See how it works</a>
+  <a class="cta secondary" href="privacy.html">Privacy Policy</a>
+</div>
 
-<h2>Data Retention &amp; Deletion</h2>
-<ul>
-  <li><strong>Trash &amp; automatic purge</strong> — deleted flights, aircraft, and batteries move
-    to a Trash area and are automatically and permanently purged after 30 days.</li>
-  <li><strong>Data portability</strong> — you can export a complete JSON backup of your account, or
-    a CSV of your flight logs, at any time from Configuration.</li>
-  <li><strong>Account deletion</strong> — you can permanently delete your account and all
-    associated cloud data from the Profile screen. This requires typing a confirmation phrase and
-    cannot be undone.</li>
-  <li id="account-deletion"><strong>Can't open the app?</strong> — email
-    <a href="mailto:riedlking@gmail.com?subject=FlightLog%20Account%20Deletion%20Request">riedlking@gmail.com</a>
-    with the subject "Account Deletion Request" from the address on your account, and we will
-    permanently delete your account and all associated data within a reasonable time.</li>
-</ul>
+<h2>Why FlightLog</h2>
+<p>FlightLog lets you note down an event in seconds so you can get straight back to your next pack. You never have to worry about missing a detail or choosing between quick manual notes and raw telemetry. FlightLog captures everything, beautifully combined — getting out of your way at the field and giving you incredible insights right in your pocket.</p>
 
-<h2>Data Security</h2>
-<p>Your data is stored in Google Firestore, secured by server-side access rules that restrict every
-account to its own data, gated by an approval flag set automatically at sign-up and adjustable only
-by an administrator (for example, to suspend an account). Local
-on-device data is not encrypted at rest beyond the operating system's own protections; the app does
-not support Android's automatic backup feature (<code>allowBackup="false"</code>), so no local app
-data is included in device-to-device or cloud OS backups.</p>
+<h2>Key Features</h2>
 
-<h2>Children's Privacy</h2>
-<p>FlightLog is not directed at children under 13, and we do not knowingly collect personal
-information from children under 13.</p>
+<div class="feature-group">
+  <h3>STREAMLINED &amp; SIMPLE</h3>
+  <ul>
+    <li><strong>Fast Setup</strong> — Everything you need, nothing you don't. We skipped the endless menus so you can add gear and get back to flying.</li>
+    <li><strong>Smart Navigation</strong> — Search for a tag or apply a filter, and the app remembers it as you jump between screens.</li>
+    <li><strong>Built for the Field</strong> — Designed by pilots with a clean layout, smart default values, and an interface that stays out of your way.</li>
+  </ul>
+</div>
 
-<h2>Changes to This Policy</h2>
-<p>If this policy changes, we will update the effective date above and, for material changes,
-notify users in-app.</p>
+<div class="feature-group">
+  <h3>FAST MANUAL LOGGING</h3>
+  <ul>
+    <li><strong>Smart Proposals</strong> — FlightLog suggests your next battery, location, and flight time.</li>
+    <li><strong>Custom Tags</strong> — Define your own tags to categorize flights exactly how you think about them.</li>
+    <li><strong>Voice Entry</strong> — Hands-free flight dictation. Just speak your notes after landing.</li>
+  </ul>
+</div>
 
-<h2>Contact</h2>
-<p>Questions about this policy or your data can be sent to
-<a href="mailto:riedlking@gmail.com">riedlking@gmail.com</a>.</p>
+<div class="feature-group">
+  <h3>FLEET &amp; BATTERIES</h3>
+  <ul>
+    <li><strong>Complete Tracking</strong> — Manage your aircraft configurations, battery cycles, and hardware history.</li>
+    <li><strong>Compatibility Guards</strong> — Smart safety checks ensure you never accidentally log a 4S battery on a 6S aircraft.</li>
+  </ul>
+</div>
 
-<footer>FlightLog — this page is the canonical, hosted privacy policy referenced from the app's
-About screen and Google Play Store listing.</footer>
+<div class="feature-group">
+  <h3>RICH ANALYTICS</h3>
+  <ul>
+    <li><strong>Fleet Dashboards</strong> — View overall activity tiles, monthly flight trends, and battery usage at a glance.</li>
+    <li><strong>Telemetry Deep-Dive</strong> — Chart your imported data per-flight, including head speed, voltage sag, current draw, and ESC temperature.</li>
+  </ul>
+</div>
+
+<div class="feature-group">
+  <h3>TELEMETRY &amp; MERGE</h3>
+  <ul>
+    <li><strong>OpenTX / EdgeTX Import</strong> — Drop in your radio logs in batches. The app instantly adapts to whatever sensors your specific aircraft reports.</li>
+    <li><strong>Fuzzy Merge Engine</strong> — Log a flight by hand at the field, then import its telemetry later. FlightLog automatically finds the match and merges them into one perfect record. No duplicates.</li>
+  </ul>
+</div>
+
+<div class="feature-group">
+  <h3>YOUR DATA, EVERYWHERE</h3>
+  <ul>
+    <li><strong>Offline-First & Multi-Device</strong> — Use every feature out at the field with zero signal. Once you have a connection, your logbook syncs seamlessly across all your devices.</li>
+    <li><strong>True Ownership</strong> — Export your entire logbook at any time to keep your own personal backups or spreadsheets.</li>
+    <li><strong>Safe Deletion</strong> — A 30-day recoverable Trash protects against accidents. If you ever leave, deleting your account wipes your cloud data completely.</li>
+  </ul>
+</div>
+
+<h2>Who It's For</h2>
+<p>Built for RC hobbyists and flying clubs who want their logbook to be as serious about their
+data as they are about their aircraft. Free to use, with no ads and no spam.</p>
+
+<h2>Privacy — By Default, Not By Policy</h2>
+<p>Just like at the flight line, you are the pilot in command of your data. FlightLog only asks for Internet (to sync across devices) and Microphone (only if you opt-in to voice logging). Silent tracking and Voice AI are entirely disabled by default. We don't harvest your data, and we only store what is absolutely necessary to keep your logbook running: your email, name, and your flight logs. Full details in the <a href="privacy.html">privacy policy</a>.</p>
+
+<footer>FlightLog — an independent app for RC pilots. Support:
+<a href="mailto:riedlking@gmail.com">riedlking@gmail.com</a></footer>
 
 </body>
 </html>

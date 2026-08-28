@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A guided tour of FlightLog's screens — navigation overview plus a walkthrough of every main screen.">
+<title>FlightLog Help</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e6e6e6; background: #121212; }
+    a { color: #6db3ff; }
+  }
+  h1 { color: #1F80FF; margin-bottom: 0.2rem; }
+  h2 { margin-top: 2.4rem; border-bottom: 1px solid rgba(127,127,127,0.3); padding-bottom: 0.3rem; }
+  .tagline { color: #666; margin-top: 0; margin-bottom: 2rem; }
+  @media (prefers-color-scheme: dark) { .tagline { color: #aaa; } }
+  a { color: #1F80FF; }
+  footer { margin-top: 3rem; font-size: 0.85rem; color: #777; }
+  .topnav { margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .topnav a { margin-right: 1.2rem; text-decoration: none; }
+  .topnav a:hover { text-decoration: underline; }
+  .screen {
+    margin-top: 1.8rem;
+    padding: 1.3rem 1.3rem 1.5rem;
+    border: 1px solid rgba(127,127,127,0.25);
+    border-radius: 16px;
+    background: rgba(31,128,255,0.05);
+  }
+  @media (prefers-color-scheme: dark) { .screen { background: rgba(109,179,255,0.08); } }
+  .screen h3 { margin-top: 0; margin-bottom: 0.6rem; }
+  .screen > p { margin: 0 0 1.1rem; }
+  .screen-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .screenshot-wrap { position: relative; width: 52%; max-width: 250px; flex-shrink: 0; }
+  .screenshot-wrap img {
+    width: 100%; height: auto; border-radius: 14px; display: block;
+    border: 1px solid rgba(127,127,127,0.25);
+  }
+  .pin-num {
+    position: absolute; width: 15px; height: 15px; border-radius: 50%;
+    background: #1F80FF; color: #fff; font-size: 0.58rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    transform: translate(-50%, -50%); box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    border: 1.5px solid #fff;
+    padding: 0; margin: 0; font-family: inherit; line-height: 1; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pin-num:active { transform: translate(-50%, -50%) scale(0.88); }
+  .screenshot-stack { display: flex; flex-direction: column; gap: 0.6rem; width: 52%; max-width: 250px; flex-shrink: 0; }
+  .screenshot-stack .screenshot-wrap { width: 100%; max-width: none; }
+  .screen-text { flex: 1; }
+  .actions { margin: 0; padding-left: 1.2rem; }
+  .actions li { margin-bottom: 0.45rem; }
+  .actions li::marker { color: #1F80FF; font-weight: 700; }
+
+  /* Tap-to-reveal bottom sheet: mobile only. Desktop keeps the side-by-side list. */
+  .pin-sheet-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s ease; z-index: 40;
+  }
+  .pin-sheet-backdrop.open { opacity: 1; pointer-events: auto; }
+  .pin-sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    background: #fff; border-radius: 18px 18px 0 0;
+    box-shadow: 0 -6px 24px rgba(0,0,0,0.25);
+    padding: 1.4rem 1.6rem calc(1.6rem + env(safe-area-inset-bottom));
+    transform: translateY(100%); transition: transform 0.25s ease;
+    max-height: 45vh; overflow-y: auto;
+  }
+  .pin-sheet.open { transform: translateY(0); }
+  @media (prefers-color-scheme: dark) { .pin-sheet { background: #1c1c1c; } }
+  .pin-sheet-close {
+    position: absolute; top: 0.6rem; right: 0.9rem; width: 28px; height: 28px;
+    border-radius: 50%; border: none; background: rgba(127,127,127,0.15);
+    color: inherit; font-size: 1rem; cursor: pointer;
+  }
+  .pin-sheet-body { display: flex; gap: 0.8rem; align-items: flex-start; padding-right: 1.6rem; }
+  .pin-sheet-num {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+    background: #1F80FF; color: #fff; font-size: 0.8rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 0.15rem;
+  }
+  .pin-sheet-text { margin: 0; }
+  .tap-hint { display: none; font-size: 0.85rem; color: #666; margin: -0.6rem 0 1rem; }
+  @media (prefers-color-scheme: dark) { .tap-hint { color: #aaa; } }
+
+  @media (max-width: 640px) {
+    .screen-text { display: none; }
+    .screen-row { flex-direction: column; }
+    .screenshot-wrap, .screenshot-stack { width: 100%; max-width: 340px; margin: 0 auto; }
+    .tap-hint { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="index.html">Home</a>
+  <a href="help.html">Help</a>
+  <a href="privacy.html">Privacy</a>
+</nav>
+
+<h1>How FlightLog Works</h1>
+<p class="tagline">A quick tour of the app — where things live, and what each screen does.</p>
+<p class="tap-hint">Tap a blue pin on any screenshot below to see what it does.</p>
+
+<h2>Navigation</h2>
+<div class="screen">
+  <p>Everything in FlightLog is reachable from the navigation drawer (the ☰ icon, top-left of any
+  screen):</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_drawer.png" alt="Navigation drawer">
+      <button type="button" class="pin-num" style="left:4%;top:19.36%">1</button>
+      <button type="button" class="pin-num" style="left:4%;top:25.64%">2</button>
+      <button type="button" class="pin-num" style="left:4%;top:31.92%">3</button>
+      <button type="button" class="pin-num" style="left:4%;top:38.21%">4</button>
+      <button type="button" class="pin-num" style="left:4%;top:44.49%">5</button>
+      <button type="button" class="pin-num" style="left:4%;top:50.77%">6</button>
+      <button type="button" class="pin-num" style="left:4%;top:57.05%">7</button>
+      <button type="button" class="pin-num" style="left:4%;top:63.33%">8</button>
+      <button type="button" class="pin-num" style="left:4%;top:69.62%">9</button>
+      <button type="button" class="pin-num" style="left:4%;top:75.90%">10</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Aircraft — your fleet list, add/edit/quick-log a flight for any aircraft.</li>
+        <li>Batteries — your battery inventory, with usage stats per pack.</li>
+        <li>Flight Detail — a deep dive into one flight's phases and telemetry.</li>
+        <li>Dashboard — fleet-wide analytics at a glance.</li>
+        <li>Statistics — activity trends and per-flight telemetry charts over time.</li>
+        <li>Sync Logs — import telemetry CSVs or legacy logs in bulk.</li>
+        <li>Trash — recover an accidentally deleted flight, aircraft, or battery within 30 days.</li>
+        <li>User Profile — account status, subscription, and data controls.</li>
+        <li>Configuration — app-wide settings: crash reporting, voice AI consent, cache, and more.</li>
+        <li>About — app info, version, and the full privacy disclosure.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<h2>Screen by Screen</h2>
+
+<div class="screen">
+  <h3>Aircraft</h3>
+  <p>Your fleet at a glance — each card shows total flights, airtime, and last-flown date, with a
+  one-tap quick-log shortcut to start a new entry for that aircraft.</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_aircraft.png" alt="Aircraft screen">
+      <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+      <button type="button" class="pin-num" style="left:calc(93.15% - 10px);top:calc(7.99% + 10px)">2</button>
+      <button type="button" class="pin-num" style="left:calc(26.94% + 11px);top:calc(16.32% - 10px)">3</button>
+      <button type="button" class="pin-num" style="left:calc(90.65% - 10px);top:calc(17.44% + 10px)">4</button>
+      <button type="button" class="pin-num" style="left:calc(12.69% + 11px);top:calc(24.36% + 10px)">5</button>
+      <button type="button" class="pin-num" style="left:75.93%;top:calc(24.83% + 11px)">6</button>
+      <button type="button" class="pin-num" style="left:calc(89.26% - 11px);top:calc(93.38% - 11px)">7</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer — jump to any screen.</li>
+        <li>Search your fleet.</li>
+        <li>Tap the aircraft to edit its details.</li>
+        <li>Sync status — confirms this aircraft is backed up to the cloud.</li>
+        <li>Quick-log — one tap starts a new flight for this aircraft.</li>
+        <li>Tap the last-flown date to jump straight to that flight's detail page.</li>
+        <li>Add a new aircraft to your fleet.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>New Flight</h3>
+  <p>Log a flight by hand or via voice in seconds — aircraft, location, and duration, with compatible-battery
+  suggestions and optional tags. Reached via the quick-log shortcut on any Aircraft card.</p>
+  <div class="screen-row">
+    <div class="screenshot-stack">
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_manual_entry.png" alt="New Flight (Manual Entry) screen">
+        <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+        <button type="button" class="pin-num" style="left:calc(81.48% - 10px);top:calc(7.99% + 10px)">2</button>
+        <button type="button" class="pin-num" style="left:calc(93.15% - 10px);top:calc(7.99% + 10px)">3</button>
+        <button type="button" class="pin-num" style="left:50.00%;top:calc(16.97% - 11px)">4</button>
+        <button type="button" class="pin-num" style="left:50.00%;top:calc(25.51% + 11px)">5</button>
+        <button type="button" class="pin-num" style="left:calc(18.98% + 11px);top:58.33%">6</button>
+        <button type="button" class="pin-num" style="left:calc(14.91% + 11px);top:77.22%">7</button>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_manage_locations.png" alt="Manage locations sheet">
+        <button type="button" class="pin-num" style="left:calc(90.28% + 10px);top:calc(28.71% - 10px)">8</button>
+        <button type="button" class="pin-num" style="left:9.26%;top:calc(55.81% - 12px)">9</button>
+        <button type="button" class="pin-num" style="left:calc(77.59% - 10px);top:calc(79.68% - 10px)">10</button>
+        <button type="button" class="pin-num" style="left:calc(90.28% + 10px);top:calc(79.68% - 10px)">11</button>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_manage_tags.png" alt="Manage tags sheet">
+        <button type="button" class="pin-num" style="left:calc(90.28% + 10px);top:calc(28.71% - 10px)">12</button>
+        <button type="button" class="pin-num" style="left:9.26%;top:calc(55.81% - 12px)">13</button>
+        <button type="button" class="pin-num" style="left:9.72%;top:calc(79.68% - 12px)">14</button>
+        <button type="button" class="pin-num" style="left:calc(77.59% - 10px);top:calc(79.68% - 10px)">15</button>
+        <button type="button" class="pin-num" style="left:calc(90.28% + 10px);top:calc(79.68% - 10px)">16</button>
+      </div>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Back — discards this entry.</li>
+        <li>Dictate flight details by voice.</li>
+        <li>Save this flight.</li>
+        <li>Select aircraft.</li>
+        <li>Pick or add a flying location.</li>
+        <li>Compatible batteries — tap to mark which pack(s) you used.</li>
+        <li>Add a tag to categorize this flight.</li>
+        <li>Manage locations — add a new one.</li>
+        <li>Search your saved locations.</li>
+        <li>Rename a location.</li>
+        <li>Delete a location.</li>
+        <li>Manage tags — add a new one.</li>
+        <li>Search your saved tags.</li>
+        <li>Tap the checkbox to apply this tag to the flight.</li>
+        <li>Rename a tag.</li>
+        <li>Delete a tag.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Voice Entry</h3>
+  <p>Hands-free logging — tap the mic on New Flight and describe your flight naturally: aircraft,
+  duration, battery, mAh used, tags, whatever you mention. Gemini AI transcribes what you said and
+  extracts structured flight details, auto-filling the form above for you to review before saving.
+  Off by default and consent-gated in Configuration; your speech is processed in real time and never
+  stored.</p>
+  <div class="screen-row">
+    <div class="screenshot-stack">
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_voice_listening.png" alt="Listening, actively recording your flight details">
+        <button type="button" class="pin-num" style="left:calc(81.5% - 10px);top:calc(40.7% - 10px)">1</button>
+        <button type="button" class="pin-num" style="left:6.5%;top:calc(76.1% - 10px)">2</button>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_voice_extracting.png" alt="Extracting details with AI, right after recording">
+        <button type="button" class="pin-num" style="left:calc(81.5% - 10px);top:calc(40.7% - 10px)">3</button>
+        <button type="button" class="pin-num" style="left:6.5%;top:calc(76.1% - 10px)">4</button>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_voice_transcript.png" alt="Transcription and Voice AI response">
+        <button type="button" class="pin-num" style="left:3.7%;top:7.9%">5</button>
+        <button type="button" class="pin-num" style="left:3.7%;top:34.8%">6</button>
+      </div>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Mic — tap to start recording.</li>
+        <li>"Listening — speak your flight details" confirms it's capturing your voice.</li>
+        <li>Mic — tap again to stop recording.</li>
+        <li>"Extracting details with AI..." appears next.</li>
+        <li>Transcription — the exact words Gemini heard, so you can catch a mishearing.</li>
+        <li>Voice AI response — the structured fields it extracted, auto-filled into the form
+        for you to review and correct before saving.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Batteries</h3>
+  <p>Battery tracking shows the number of flights, total usage time, and last-flown date for
+  every pack, so you always know what's been through the wringer.</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_batteries.png" alt="Batteries screen">
+      <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+      <button type="button" class="pin-num" style="left:calc(93.15% - 10px);top:calc(7.99% + 10px)">2</button>
+      <button type="button" class="pin-num" style="left:calc(18.89% + 11px);top:calc(16.32% - 10px)">3</button>
+      <button type="button" class="pin-num" style="left:calc(90.65% - 10px);top:calc(17.44% + 10px)">4</button>
+      <button type="button" class="pin-num" style="left:75.93%;top:calc(24.83% + 11px)">5</button>
+      <button type="button" class="pin-num" style="left:calc(89.26% - 11px);top:calc(93.38% - 11px)">6</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Search your batteries.</li>
+        <li>Tap the battery to edit its details.</li>
+        <li>Sync status — confirms this battery is backed up to the cloud.</li>
+        <li>Tap the last-flown date to jump straight to that flight's detail page.</li>
+        <li>Add a new battery to your fleet.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Flight Detail</h3>
+  <p>Every logged flight can be categorized with your own tags and compared against your fleet baseline. Telemetry adds automatically detected flight phases and detailed performance metrics on top.</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_flight_detail.png" alt="Flight Detail screen">
+      <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+      <button type="button" class="pin-num" style="left:calc(81.48% - 10px);top:calc(7.99% + 10px)">2</button>
+      <button type="button" class="pin-num" style="left:calc(93.15% - 10px);top:calc(7.99% + 10px)">3</button>
+      <button type="button" class="pin-num" style="left:calc(35.93% + 11px);top:calc(15.17% + 10px)">4</button>
+      <button type="button" class="pin-num" style="left:calc(13.70% + 11px);top:calc(25.98% + 10px)">5</button>
+      <button type="button" class="pin-num" style="left:calc(6.85% + 11px);top:calc(94.10% - 11px)">6</button>
+      <button type="button" class="pin-num" style="left:calc(93.15% - 11px);top:calc(94.10% - 11px)">7</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Edit this flight's details.</li>
+        <li>Delete this flight — moves to Trash, recoverable for 30 days.</li>
+        <li>Sync status for this flight.</li>
+        <li>Switch between the Full Log and each auto-detected flight phase.</li>
+        <li>Jump to the previous (newer) flight.</li>
+        <li>Jump to the next (older) flight.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Dashboard</h3>
+  <p>Fleet-wide stats at a glance — see flight count, airtime, and telemetry data automatically aggregated across your whole fleet, or filter by aircraft, battery, location, tag, or time range.</p>
+  <div class="screen-row">
+    <div class="screenshot-stack">
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_dashboard.png" alt="Dashboard screen">
+        <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+        <button type="button" class="pin-num" style="left:calc(35.93% + 11px);top:calc(15.17% + 10px)">2</button>
+        <button type="button" class="pin-num" style="left:calc(84.35% - 10px);top:calc(15.17% + 10px)">3</button>
+        <button type="button" class="pin-num" style="left:20.37%;top:calc(22.52% + 11px)">4</button>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_dashboard_filter.png" alt="Dashboard filter panel, expanded">
+        <button type="button" class="pin-num" style="left:2.5%;top:12.5%">5</button>
+        <button type="button" class="pin-num" style="left:2.5%;top:28.5%">6</button>
+        <button type="button" class="pin-num" style="left:2.5%;top:44.5%">7</button>
+        <button type="button" class="pin-num" style="left:2.5%;top:60.5%">8</button>
+        <button type="button" class="pin-num" style="left:13.5%;top:calc(76% - 10px)">9</button>
+        <button type="button" class="pin-num" style="left:38.6%;top:calc(76% - 10px)">10</button>
+        <button type="button" class="pin-num" style="left:64.9%;top:calc(76% - 10px)">11</button>
+        <button type="button" class="pin-num" style="left:83.6%;top:calc(76% - 10px)">12</button>
+        <button type="button" class="pin-num" style="left:17.3%;top:calc(88.7% - 10px)">13</button>
+      </div>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Sync status.</li>
+        <li>Adjust — open the filter panel (aircraft, date range, battery, and more).</li>
+        <li>Tap "Number of Flights" to jump straight to your most recent flight's detail page.</li>
+        <li>Aircraft — narrow everything to one aircraft, or leave it on your whole fleet.</li>
+        <li>Battery — narrow results to flights using one specific pack.</li>
+        <li>Location — filter by flying field.</li>
+        <li>Tag — filter by your own custom tags.</li>
+        <li>All time — no date restriction (default).</li>
+        <li>Last 30 days — quick recent-activity preset.</li>
+        <li>This year — quick year-to-date preset.</li>
+        <li>Custom range — pick an exact start and end date.</li>
+        <li>Inactive only — show just your retired aircraft and batteries.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Statistics — Activity Insights</h3>
+  <p>Charts your flying activity month by month, color-coded by aircraft — tap any bar to see that
+  month's per-aircraft breakdown.</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_statistics_v2.png" alt="Statistics — Activity Insights screen">
+      <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+      <button type="button" class="pin-num" style="left:calc(35.93% + 11px);top:calc(15.17% + 10px)">2</button>
+      <button type="button" class="pin-num" style="left:calc(84.35% - 10px);top:calc(15.17% + 10px)">3</button>
+      <button type="button" class="pin-num" style="left:30.09%;top:calc(22.52% + 11px)">4</button>
+      <button type="button" class="pin-num" style="left:72.96%;top:calc(22.52% + 11px)">5</button>
+      <button type="button" class="pin-num" style="left:12.96%;top:calc(29.70% + 11px)">6</button>
+      <button type="button" class="pin-num" style="left:33.43%;top:calc(29.70% + 11px)">7</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Sync status.</li>
+        <li>Adjust — open the filter panel (aircraft, date range, battery, and more).</li>
+        <li>Activity Insights tab (this view).</li>
+        <li>Telemetry Trends tab — switch to per-flight sensor charts.</li>
+        <li>Flights — chart the number of flights per month.</li>
+        <li>Airtime — chart total flight time per month instead.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Statistics — Telemetry Trends</h3>
+  <p>Plots per-flight sensor data over time — pick multiple metrics to compare trends side by side against your fleet average.</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_statistics_telemetry_trends_v2.png" alt="Statistics — Telemetry Trends screen">
+      <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+      <button type="button" class="pin-num" style="left:calc(35.93% + 11px);top:calc(15.17% + 10px)">2</button>
+      <button type="button" class="pin-num" style="left:calc(84.35% - 10px);top:calc(15.17% + 10px)">3</button>
+      <button type="button" class="pin-num" style="left:26.94%;top:calc(22.52% + 11px)">4</button>
+      <button type="button" class="pin-num" style="left:13.70%;top:calc(29.70% + 11px)">5</button>
+      <button type="button" class="pin-num" style="left:18.98%;top:calc(38.72% + 11px)">6</button>
+      <button type="button" class="pin-num" style="left:44.81%;top:calc(38.72% + 11px)">7</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Sync status.</li>
+        <li>Adjust — open the filter panel (aircraft, date range, battery, and more).</li>
+        <li>Switch back to Activity Insights.</li>
+        <li>Full Log vs. Most Intense — chart the whole flight or just its most intense phase.</li>
+        <li>Tap a metric to add it to the chart...</li>
+        <li>...tap another to compare it alongside the first (multi-select).</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Sync Logs</h3>
+  <p>Batch-import OpenTX/EdgeTX telemetry straight from your transmitter's SD card, with
+  configurable parsing rules — file size limits, batch size, minimum row count.</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_upload.png" alt="Sync Logs screen">
+      <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+      <button type="button" class="pin-num" style="left:15.37%;top:calc(16.07% - 11px)">2</button>
+      <button type="button" class="pin-num" style="left:41.76%;top:calc(16.07% - 11px)">3</button>
+      <button type="button" class="pin-num" style="left:50.00%;top:calc(38.16% + 11px)">4</button>
+      <button type="button" class="pin-num" style="left:calc(89.26% - 11px);top:calc(48.46% - 11px)">5</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Telemetry tab — import OpenTX/EdgeTX CSV logs.</li>
+        <li>Legacy CSV tab — import from another logbook app's export.</li>
+        <li>Choose files — pick one or more CSVs from your device.</li>
+        <li>Expand Upload Configuration to fine-tune parsing rules.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Trash</h3>
+  <p>Every deleted flight, aircraft, and battery lands here first — recoverable for 30 days before
+  it's permanently purged, whether you delete it yourself or it expires automatically.</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_trash.png" alt="Trash screen">
+      <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+      <button type="button" class="pin-num" style="left:50%;top:calc(7.99% + 11px)">2</button>
+      <button type="button" class="pin-num" style="left:calc(78.61% - 10px);top:calc(16.07% + 10px)">3</button>
+      <button type="button" class="pin-num" style="left:calc(90.28% + 10px);top:calc(16.07% + 10px)">4</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Empty Trash — permanently delete everything in it at once.</li>
+        <li>Restore this item back to your active fleet/logs.</li>
+        <li>Delete this item permanently, right now (skips the 30-day wait).</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>User Profile</h3>
+  <p>Your account at a glance — subscription status, fleet-wide stats, and full control over your
+  data, including permanent account deletion when you want it.</p>
+  <div class="screen-row">
+    <div class="screenshot-wrap">
+      <img src="assets/screenshots/screenshot_profile.png" alt="User Profile screen">
+      <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+      <button type="button" class="pin-num" style="left:47.04%;top:calc(34.36% - 11px)">2</button>
+      <button type="button" class="pin-num" style="left:53.89%;top:calc(58.72% - 11px)">3</button>
+      <button type="button" class="pin-num" style="left:53.89%;top:calc(73.16% - 11px)">4</button>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Profile Details — expand to edit your pilot name, flying field, and AMA/FAA number.</li>
+        <li>Sign out of your account.</li>
+        <li>Delete account — permanently erases your account and all flight data.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>Configuration</h3>
+  <p>App-wide settings — crash reporting, voice AI consent, fleet visibility, and your data.</p>
+  <div class="screen-row">
+    <div class="screenshot-stack">
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_configuration_1.png" alt="Configuration screen, top">
+        <button type="button" class="pin-num" style="left:calc(6.85% + 10px);top:calc(7.99% + 10px)">1</button>
+        <button type="button" class="pin-num" style="left:82%;top:36.07%">2</button>
+        <button type="button" class="pin-num" style="left:82%;top:46.37%">3</button>
+        <button type="button" class="pin-num" style="left:82%;top:63.42%">4</button>
+        <button type="button" class="pin-num" style="left:53.89%;top:78.08%">5</button>
+        <button type="button" class="pin-num" style="left:53.89%;top:84.36%">6</button>
+        <button type="button" class="pin-num" style="left:53.89%;top:90.64%">7</button>
+      </div>
+      <div class="screenshot-wrap">
+        <img src="assets/screenshots/screenshot_configuration_2.png" alt="Configuration screen, bottom">
+        <button type="button" class="pin-num" style="left:53.89%;top:87.56%">8</button>
+        <button type="button" class="pin-num" style="left:53.89%;top:93.85%">9</button>
+      </div>
+    </div>
+    <div class="screen-text">
+      <ol class="actions">
+        <li>Open the navigation drawer.</li>
+        <li>Crash reporting — send anonymized crash reports to help fix issues.</li>
+        <li>Voice entry AI — allow spoken flight details to be sent to Gemini.</li>
+        <li>Show retired aircraft &amp; batteries — reveal them in dropdowns and fleet lists.</li>
+        <li>Export flights (CSV).</li>
+        <li>Back up all data (JSON).</li>
+        <li>Restore from a JSON backup.</li>
+        <li>Wipe All Cache — full local cache reset, re-syncs from the cloud.</li>
+        <li>Share your diagnostic log (for troubleshooting with support).</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="screen">
+  <h3>About</h3>
+  <p>Full transparency, in-app — exactly what FlightLog collects, why, and how to control it,
+  without having to leave the app.</p>
+  <div class="screenshot-wrap" style="margin:0 auto;">
+    <img src="assets/screenshots/screenshot_about.png" alt="About screen">
+  </div>
+</div>
+
+<footer>FlightLog — an independent app for RC pilots. Support:
+<a href="mailto:riedlking@gmail.com">riedlking@gmail.com</a></footer>
+
+<div class="pin-sheet-backdrop" id="pin-sheet-backdrop"></div>
+<div class="pin-sheet" id="pin-sheet" role="dialog" aria-modal="true" aria-label="Step details">
+  <button type="button" class="pin-sheet-close" id="pin-sheet-close" aria-label="Close">✕</button>
+  <div class="pin-sheet-body">
+    <span class="pin-sheet-num" id="pin-sheet-num"></span>
+    <p class="pin-sheet-text" id="pin-sheet-text"></p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var sheet = document.getElementById('pin-sheet');
+  var backdrop = document.getElementById('pin-sheet-backdrop');
+  var sheetNum = document.getElementById('pin-sheet-num');
+  var sheetText = document.getElementById('pin-sheet-text');
+
+  function openSheet(num, html) {
+    sheetNum.textContent = num;
+    sheetText.innerHTML = html;
+    sheet.classList.add('open');
+    backdrop.classList.add('open');
+  }
+  function closeSheet() {
+    sheet.classList.remove('open');
+    backdrop.classList.remove('open');
+  }
+
+  document.addEventListener('click', function (e) {
+    var pin = e.target.closest('.pin-num');
+    if (pin) {
+      var screen = pin.closest('.screen');
+      var list = screen && screen.querySelector('.actions');
+      var idx = parseInt(pin.textContent, 10);
+      var li = list && list.children[idx - 1];
+      if (li) openSheet(idx, li.innerHTML);
+      return;
+    }
+    if (e.target === backdrop || e.target.closest('#pin-sheet-close')) {
+      closeSheet();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeSheet();
+  });
+})();
+</script>
+
+</body>
+</html>
