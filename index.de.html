@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="FlightLog: ein Offline-First-Flugbuch für RC-Piloten, das Telemetriedaten des Senders automatisch mit manuellen Flugeinträgen zusammenführt. Keine Werbung, kein Spam.">
+<title>FlightLog</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e6e6e6; background: #121212; }
+    a { color: #6db3ff; }
+  }
+  h1 { color: #1F80FF; margin-bottom: 0.2rem; }
+  h2 { margin-top: 2.2rem; border-bottom: 1px solid rgba(127,127,127,0.3); padding-bottom: 0.3rem; }
+  h3 { margin-bottom: 0.4rem; }
+  .tagline { color: #666; margin-top: 0; margin-bottom: 2rem; font-size: 1.1rem; }
+  @media (prefers-color-scheme: dark) { .tagline { color: #aaa; } }
+  ul { padding-left: 1.3rem; }
+  li { margin-bottom: 0.4rem; }
+  a { color: #1F80FF; }
+  footer { margin-top: 3rem; font-size: 0.85rem; color: #777; }
+  .topnav { margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .topnav a { margin-right: 1.2rem; text-decoration: none; }
+  .topnav a:hover { text-decoration: underline; }
+  .hero { width: 100%; height: auto; border-radius: 12px; margin-bottom: 1.5rem; display: block; }
+  .cta-row { margin: 2rem 0; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+  .cta { display: inline-block; padding: 0.7rem 1.3rem; border-radius: 8px; background: #1F80FF;
+    color: #fff; text-decoration: none; font-weight: 600; }
+  .cta:hover { background: #1668d6; }
+  .cta.secondary { background: transparent; border: 1px solid #1F80FF; color: #1F80FF; }
+  @media (prefers-color-scheme: dark) { .cta.secondary { color: #6db3ff; border-color: #6db3ff; } }
+  .feature-group { margin-top: 1.4rem; }
+
+  .intro-video-link {
+    display: block;
+    width: 30%;
+    max-width: 102px;
+    margin: 0 0 2rem;
+  }
+  .intro-video-link img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .lang-switch-row { margin: 0 0 1.5rem; }
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.3rem 0.8rem 0.3rem 0.3rem; border-radius: 999px;
+    border: 1px solid rgba(127,127,127,0.25);
+    color: inherit; text-decoration: none; font-size: 0.95rem;
+  }
+  .lang-switch:hover { background: rgba(31,128,255,0.08); text-decoration: none; }
+  .lang-flag {
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 1.05rem; line-height: 1; overflow: hidden;
+    background: rgba(127,127,127,0.1); box-shadow: 0 0 0 1px rgba(127,127,127,0.25);
+  }
+</style>
+</head>
+<body>
+
+<img class="hero" src="assets/feature_graphic_DRAFT.png" alt="FlightLog — Flugbuch für RC-Piloten: Telemetrie trifft manuelle Erfassung, eigene Tags, eigene Statistiken, ganz nach eigenem Stil">
+
+<nav class="topnav">
+  <a href="index.de.html">Start</a>
+  <a href="help.de.html">Hilfe</a>
+  <a href="privacy.html">Datenschutz</a>
+</nav>
+
+<div class="lang-switch-row">
+  <a class="lang-switch" href="index.html"><span class="lang-flag" aria-hidden="true">🇬🇧</span>English</a>
+</div>
+
+<h1>FlightLog</h1>
+<p class="tagline">Telemetrie trifft manuelle Erfassung. Eigene Tags. Eigene Statistiken. Ganz nach eigenem Stil.</p>
+
+<p>RC-PILOTEN: Flotte verwalten, Flüge protokollieren und Akkus immer im Blick behalten. Mühelos.</p>
+
+<p>FlightLog ist das ultimative digitale Flugbuch für Heli-, Flächen- und Drohnenpiloten. Ob schnelle manuelle Einträge direkt am Fluggelände oder ausführliche Telemetrie-Importe aus OpenTX/EdgeTX — FlightLog passt sich der jeweiligen Arbeitsweise an. Dank eigener Tags, Sprachdiktat und intelligenter Vorschläge für den nächsten Akku, das Fluggelände und die Flugzeit geht die Erfassung schneller als je zuvor. Minimaler Aufwand am Fluggelände genügt, und FlightLog liefert im Gegenzug umfangreiche, detaillierte Statistiken.</p>
+
+<a class="intro-video-link" href="assets/FlightLog Intro.mp4"><img src="assets/watch_intro_thumb.png"></a>
+
+<div class="cta-row">
+  <a class="cta" href="help.de.html">So funktioniert's</a>
+  <a class="cta secondary" href="privacy.html">Datenschutzerklärung</a>
+</div>
+
+<h2>Warum FlightLog</h2>
+<p>Mit FlightLog lässt sich ein Ereignis in Sekunden notieren, sodass es direkt weiter zum nächsten Akku gehen kann. Die Sorge, ein Detail zu verpassen oder sich zwischen manuellen Notizen und rohen Telemetriedaten entscheiden zu müssen, entfällt. FlightLog erfasst alles und führt es elegant zusammen — bleibt am Fluggelände unauffällig im Hintergrund und liefert beeindruckende Einblicke direkt in der Hosentasche.</p>
+
+<h2>Hauptfunktionen</h2>
+
+<div class="feature-group">
+  <h3>SCHLANK &amp; EINFACH</h3>
+  <ul>
+    <li><strong>Schnelle Einrichtung</strong> — Alles Nötige, nichts Überflüssiges. Endlose Menüs wurden bewusst weggelassen, damit Ausrüstung schnell angelegt ist und es zügig zurück in die Luft geht.</li>
+    <li><strong>Intelligente Navigation</strong> — Ein gesuchter Tag oder gesetzter Filter bleibt beim Wechsel zwischen den Screens erhalten.</li>
+    <li><strong>Für den Flugplatz gemacht</strong> — Von Piloten entwickelt, mit übersichtlichem Layout, sinnvollen Standardwerten und einer Oberfläche, die nicht im Weg steht.</li>
+  </ul>
+</div>
+
+<div class="feature-group">
+  <h3>SCHNELLE MANUELLE ERFASSUNG</h3>
+  <ul>
+    <li><strong>Intelligente Vorschläge</strong> — FlightLog schlägt den nächsten Akku, das Fluggelände und die Flugzeit vor.</li>
+    <li><strong>Eigene Tags</strong> — Flüge lassen sich mit frei definierbaren Tags genau so kategorisieren, wie es sinnvoll erscheint.</li>
+    <li><strong>Spracheingabe</strong> — Freihändiges Diktieren von Flugdaten. Notizen einfach nach der Landung einsprechen.</li>
+  </ul>
+</div>
+
+<div class="feature-group">
+  <h3>FLOTTE &amp; AKKUS</h3>
+  <ul>
+    <li><strong>Lückenlose Verwaltung</strong> — Modellkonfigurationen, Akkuzyklen und Hardware-Historie im Griff.</li>
+    <li><strong>Kompatibilitätsprüfung</strong> — Intelligente Sicherheitschecks verhindern, dass versehentlich ein 4S-Akku bei einem 6S-Modell erfasst wird.</li>
+  </ul>
+</div>
+
+<div class="feature-group">
+  <h3>UMFANGREICHE AUSWERTUNGEN</h3>
+  <ul>
+    <li><strong>Flotten-Dashboards</strong> — Aktivitätsübersicht, monatliche Flugtrends und Akkunutzung auf einen Blick.</li>
+    <li><strong>Telemetrie im Detail</strong> — Importierte Daten pro Flug als Diagramm, inklusive Rotordrehzahl, Spannungseinbruch, Stromaufnahme und ESC-Temperatur.</li>
+  </ul>
+</div>
+
+<div class="feature-group">
+  <h3>TELEMETRIE &amp; ZUSAMMENFÜHRUNG</h3>
+  <ul>
+    <li><strong>OpenTX-/EdgeTX-Import</strong> — Senderlogs stapelweise importieren. Die App passt sich sofort an die Sensoren des jeweiligen Modells an.</li>
+    <li><strong>Intelligente Zusammenführung</strong> — Einen Flug am Fluggelände von Hand erfassen und die Telemetrie später nachimportieren. FlightLog findet die passende Zuordnung automatisch und führt beides zu einem einzigen, vollständigen Eintrag zusammen. Keine Duplikate.</li>
+  </ul>
+</div>
+
+<div class="feature-group">
+  <h3>EIGENE DATEN, ÜBERALL VERFÜGBAR</h3>
+  <ul>
+    <li><strong>Offline-First &amp; Mehrgeräte-Nutzung</strong> — Alle Funktionen stehen am Fluggelände auch ganz ohne Empfang zur Verfügung. Sobald wieder eine Verbindung besteht, synchronisiert sich das Flugbuch nahtlos über alle Geräte hinweg.</li>
+    <li><strong>Volle Datenhoheit</strong> — Das gesamte Flugbuch lässt sich jederzeit exportieren, für eigene Backups oder Tabellenkalkulationen.</li>
+    <li><strong>Sicheres Löschen</strong> — Ein 30 Tage lang wiederherstellbarer Papierkorb schützt vor Versehen. Bei einer Kontolöschung werden sämtliche Cloud-Daten vollständig entfernt.</li>
+  </ul>
+</div>
+
+<h2>Für wen FlightLog gemacht ist</h2>
+<p>Entwickelt für RC-Hobbypiloten und Flugvereine, denen ihr Flugbuch genauso wichtig ist wie ihre
+Modelle. Ohne Werbung und ohne Spam.</p>
+
+<h2>Datenschutz — von Haus aus, nicht nur auf dem Papier</h2>
+<p>Genau wie an der Flightline behält man auch bei den eigenen Daten selbst das Kommando. FlightLog benötigt nur die Berechtigungen Internet (zur Synchronisierung zwischen Geräten) und Mikrofon (nur bei aktivierter Spracheingabe). Stilles Tracking und die Sprach-KI sind standardmäßig vollständig deaktiviert. Es werden keine Daten gesammelt, und gespeichert wird nur das, was für den Betrieb des Flugbuchs unbedingt notwendig ist: E-Mail-Adresse, Name und die eigenen Flugeinträge. Alle Details in der <a href="privacy.html">Datenschutzerklärung</a>.</p>
+
+<footer>FlightLog — eine unabhängige App für RC-Piloten. Support:
+<a href="mailto:riedlking@gmail.com">riedlking@gmail.com</a></footer>
+
+</body>
+</html>
